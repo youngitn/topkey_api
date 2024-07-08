@@ -1,0 +1,44 @@
+spring:
+ config:
+  import: 'optional:consul:10.4.3.249:8500/config/api-service/data'
+ application:
+   name: api-service
+ cloud:
+  consul:
+     host: 10.4.3.249
+     port: 8500
+     config:
+      format: YAML
+      fail-fast: true
+      prefixes: config
+     discovery:
+      serviceName: api-service
+      tags: dev
+      #相同domain就不用healthCheckUrl
+      healthCheckUrl: http://10.4.4.136:8088/actuator/health
+      healthCheckPath: /actuator/health
+      healthCheckInterval: 10s
+      healthCheckCriticalTimeout: 30s
+ rabbitmq:
+   host: 10.4.3.249
+   port: 5672
+   username: api
+   password: secret
+
+        
+bezkoder:
+    openapi:
+      dev-url: http://localhost:8088
+      prod-url: https://localhost:8080
+management:
+   endpoints:
+    web:
+     exposure:
+      include: health,info
+server:
+  port: 8088
+
+
+custom:
+ logstash_uri: 10.4.3.249:4660
+ appender_ref: TCP_LOGSTASH
