@@ -49,7 +49,6 @@ pipeline {
                 script {
                     // 確保Docker Compose文件存在
                     writeFile file: "${APP_HOME}/docker-compose.yml", text: """
-                    version: '3.8'
 
                     services:
                       api-service:
@@ -63,7 +62,7 @@ pipeline {
                           SPRING_CLOUD_CONSUL_PORT: 8500
                           RABBITMQ_HOST: rabbitmq
                           RABBITMQ_PORT: 5672
-                          RABBITMQ_USERNAME: mouser
+                          RABBITMQ_USERNAME: api
                           RABBITMQ_PASSWORD: secret
                         volumes:
                           - /home/angela/service/api/config:/app/config
@@ -71,8 +70,9 @@ pipeline {
                           - elk
 
                     networks:
-                      elk:
-                        driver: bridge
+					  elk:
+					    external:
+					      name: docker-elk_elk
                     """
                     
                     // 使用 Docker Compose 部署服務
