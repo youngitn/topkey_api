@@ -44,16 +44,47 @@ pipeline {
                 }
             }
         }
-        stage('Deploy Docker Container') {
+         stage('Deploy Docker Container') {
             steps {
                 script {
-                    // 停止并删除现有的容器（如果存在）
-                    sh 'docker rm -f api || true'
+                    // 確保Docker Compose文件存在
+                    writeFile file: "${APP_HOME}/docker-compose.yml", text: """
+                    version: '3.8'
+
+                    services:
+                      api-service:
+                        image: ${DOCKER_IMAGE}
+                        container_name: api-service
+                        restart: always
+                        ports:
+                          - "8090:8090"
+                        environment:
+                          SPRING_CLOUD_CONSUL_HOST: consul-server
+                          SPRING_CLOUD_CONSUL_PORT: 8500
+                          RABBITMQ_HOST: rabbitmq
+                          RABBITMQ_PORT: 5672
+                          RABBITMQ_USERNAME: mouser
+                          RABBITMQ_PASSWORD: secret
+                        volumes:
+                          - /home/angela/service/api/config:/app/config
+                        networks:
+                          - elk
+
+                    networks:
+                      elk:
+                        driver: bridge
+                    """
                     
-                    // 启动新的容器
-                    sh 'docker run -d --name api -v ${APP_HOME}/config:/app/config -p 8090:8090 ${DOCKER_IMAGE}'
+                    // 使用 Docker Compose 部署服務
+                    dir("${APP_HOME}") {
+                        // 停止并删除现有的容器（如果存在）
+                        sh 'docker-compose down'
+                        // 启动新的容器
+                        sh 'docker-compose up -d'
+                    }
                 }
             }
-        }
+            
     }
+}
 }
