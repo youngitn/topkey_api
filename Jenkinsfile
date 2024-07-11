@@ -11,6 +11,8 @@ pipeline {
         APP_HOME = "/home/angela/service/api"
         GIT_CREDENTIALS_ID = '5486ab12-f4dc-43a7-9d7a-384505b067f1'
         DOCKER_IMAGE = 'local-api-image:latest'
+        JAVA_HOME = '/home/angela/graalvm-jdk-22'
+        PATH = "${JAVA_HOME}/bin:${PATH}"
     }
     stages {
         stage('Checkout from GitHub') {
