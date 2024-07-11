@@ -1,15 +1,14 @@
 package com.topkey.api.dto.travel;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 
 import com.topkey.api.util.JdeDateConverterUtil;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
@@ -100,6 +99,9 @@ public class Expense implements Serializable{
 
 	@Schema(description = "OA欄位-成本會計科目3")
 	private String vnabr3; // OA欄位-成本會計科目3
+	
+	@Schema(description = "OA欄位-成本會計科目4")
+	private String vnabr4; // OA欄位-成本會計科目3
 
 	@Schema(description = "OA欄位-成本類型1")
 	private String vnabt1; // OA欄位-成本類型1
@@ -109,10 +111,15 @@ public class Expense implements Serializable{
 
 	@Schema(description = "OA欄位-成本類型3")
 	private String vnabt3; // OA欄位-成本類型3
+	
+	@Schema(description = "OA欄位-成本類型4")
+	private String vnabt4; // OA欄位-成本類型3
 
 	@Schema(description = "OA欄位-金額")
 	private String vnag; // OA欄位-金額
-
+	
+	@Schema(description = "科目說明")
+	private String vnexr;
 	// 覆寫 setVneddt 方法
 	public void setVneddt(String vneddt) {
 		this.vneddt = JdeDateConverterUtil.convertToJdeDate(vneddt);
