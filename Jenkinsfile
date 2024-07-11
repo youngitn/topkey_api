@@ -51,7 +51,7 @@ pipeline {
                     sh 'docker rm -f api || true'
                     
                     // 启动新的容器
-                    sh 'docker run -d --name api -v ${APP_HOME}/config:/app/config -p 8080:8080 ${DOCKER_IMAGE}'
+                    sh 'docker run -d --name api -v ${APP_HOME}/config:/app/config -p 8090:8090 ${DOCKER_IMAGE}'
                 }
             }
         }
