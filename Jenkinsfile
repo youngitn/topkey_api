@@ -47,39 +47,11 @@ pipeline {
          stage('Deploy Docker Container') {
             steps {
                 script {
-                    // 確保Docker Compose文件存在
-                    writeFile file: "${APP_HOME}/docker-compose.yml", text: """
-					services:
-					  api-service:
-					    image: ${DOCKER_IMAGE}
-					    container_name: api-service
-					    restart: always
-					    ports:
-					      - "8090:8090"
-					    environment:
-					      SPRING_CLOUD_CONSUL_HOST: consul-server
-					      SPRING_CLOUD_CONSUL_PORT: 8500
-					      RABBITMQ_HOST: rabbitmq
-					      RABBITMQ_PORT: 5672
-					      RABBITMQ_USERNAME: api
-					      RABBITMQ_PASSWORD: secret
-					    volumes:
-					      - /home/angela/service/api/config:/app/config
-					    networks:
-					      - elk
-					
-					networks:
-					  elk:
-					    external:
-					      name: docker-elk_elk
-
-                    """
                     
-                    // 使用 Docker Compose 部署服務
                     dir("${APP_HOME}") {
                         // 停止并删除现有的容器（如果存在）
                         sh 'docker compose down'
-                        // 启动新的容器
+                        
                         sh 'docker compose up -d'
                     }
                 }
