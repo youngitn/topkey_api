@@ -78,9 +78,9 @@ pipeline {
                     // 使用 Docker Compose 部署服務
                     dir("${APP_HOME}") {
                         // 停止并删除现有的容器（如果存在）
-                        sh 'docker-compose down'
+                        sh 'docker compose down'
                         // 启动新的容器
-                        sh 'docker-compose up -d'
+                        sh 'docker compose up -d'
                     }
                 }
             }
