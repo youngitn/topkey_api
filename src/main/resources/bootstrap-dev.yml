@@ -52,5 +52,7 @@ spring:
     healthCheckPath: /actuator/health
     healthCheckUrl: http://10.4.4.136:8088/actuator/health
 
-
+custom:
+ logstash_uri: 10.4.3.249:4660
+ appender_ref: TCP_LOGSTASH
 
