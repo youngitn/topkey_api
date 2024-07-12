@@ -1,40 +1,40 @@
-spring:
- config:
-  import: 'optional:consul:10.4.3.249:8500/config/api-service/data'
- application:
-   name: api-service
- cloud:
-  consul:
-     host: localhost
-     port: 8500
-     config:
-      format: YAML
-      fail-fast: true
-      prefixes: config
-     discovery:
-      serviceName: api-service
-      healthCheckUrl: http://localhost:8089/actuator/health
-      healthCheckPath: /actuator/health
-      healthCheckInterval: 10s
-      healthCheckCriticalTimeout: 30s
- rabbitmq:
-   host: localhost
-   port: 5672
-   username: mouser
-   password: secret
-bezkoder:
-    openapi:
-      dev-url: http://localhost:8088
-      prod-url: https://localhost:8089
-management:
-   endpoints:
-    web:
-     exposure:
-      include: health,info
-server:
-  port: 8089
-
-
-custom:
- logstash_uri: localhost:4660
- appender_ref: TCP_LOGSTASH
+#spring:
+# config:
+#  import: 'optional:consul:10.4.3.249:8500/config/api-service/data'
+# application:
+#   name: api-service
+# cloud:
+#  consul:
+#     host: localhost
+#     port: 8500
+#     config:
+#      format: YAML
+#      fail-fast: true
+#      prefixes: config
+#     discovery:
+#      serviceName: api-service
+#      healthCheckUrl: http://localhost:8089/actuator/health
+#      healthCheckPath: /actuator/health
+#      healthCheckInterval: 10s
+#      healthCheckCriticalTimeout: 30s
+# rabbitmq:
+#   host: localhost
+#   port: 5672
+#   username: mouser
+#   password: secret
+#bezkoder:
+#    openapi:
+#      dev-url: http://localhost:8088
+#      prod-url: https://localhost:8089
+#management:
+#   endpoints:
+#    web:
+#     exposure:
+#      include: health,info
+#server:
+#  port: 8089
+#
+#
+#custom:
+# logstash_uri: localhost:4660
+# appender_ref: TCP_LOGSTASH
