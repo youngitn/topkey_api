@@ -5,6 +5,7 @@ spring:
    port: 8500
    discovery:
     healthCheckPath: /actuator/health
+    tags: prod
 custom:
  logstash_uri: logstash:4660
  appender_ref: TCP_LOGSTASH
