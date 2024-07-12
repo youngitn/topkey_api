@@ -22,24 +22,36 @@
 # 2. 這是因為這些配置需要在應用程式啟動的早期階段就被讀取，以便正確地與 Consul 進行服務註冊和發現。
 # 3. 例如，以下配置應該放在 bootstrap 系列設定檔中：
 # 
-# spring:
-#   cloud:
-#     consul:
-#       host: 10.4.3.249
-#       port: 8500
-#       config:
-#         watch:
-#           enabled: true
-#         format: YAML
-#         fail-fast: true
-#         prefixes: config
-#       discovery:
-#         serviceName: api-service
-#         tags: dev
-#         healthCheckPath: /actuator/health
-#         healthCheckInterval: 10s
-#         healthCheckCriticalTimeout: 30s
-# 
+#spring:
+# application:
+#  name: api-service
+# cloud:
+#  consul:
+#    host: 10.4.3.249
+#    port: 8500
+#    config:
+#     watch:
+#      enabled: true
+#     format: YAML
+#     fail-fast: true
+#     prefixes: config
+#    discovery:
+#     healthCheckPath: /actuator/health
+#     healthCheckUrl: http://10.4.4.136:8087/actuator/health
+#     serviceName: api-service
+#     tags: dev
+#     healthCheckInterval: 10s
+#     healthCheckCriticalTimeout: 30s
+# rabbitmq:
+#  host: 10.4.3.249
+#  port: 5672
+#  username: api
+#  password: secret
+#management:
+#    endpoints:
+#     web:
+#      exposure:
+#       include: health,info
 # 這樣做可以保證應用程式能夠在啟動時正確地與 Consul 進行交互。
 
 
