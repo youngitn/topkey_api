@@ -2,14 +2,16 @@ spring:
  application:
   name: api-service
  cloud:
-  consul:
+  consul: 
     config:
+     acl-token: f55c5bc1-7b38-147e-3871-db5342b1b3aa
      watch:
       enabled: true
      format: YAML
      fail-fast: true
      prefixes: config
     discovery:
+     acl-token: f55c5bc1-7b38-147e-3871-db5342b1b3aa
      serviceName: api-service
      tags: dev
      healthCheckInterval: 10s
