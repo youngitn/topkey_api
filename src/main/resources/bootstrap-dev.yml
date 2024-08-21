@@ -46,9 +46,12 @@
 spring:
  cloud:
   consul:
+   config:
+    acl-token: ${CONSUL_TOKEN}
    host: 10.4.3.249
    port: 8500
    discovery:
+    acl-token: ${CONSUL_TOKEN}
     healthCheckPath: /actuator/health
     healthCheckUrl: http://10.4.4.136:8088/actuator/health
 
