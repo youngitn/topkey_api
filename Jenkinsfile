@@ -13,13 +13,10 @@ pipeline {
         JAVA_HOME = '/home/angela/graalvm-jdk-22'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
-    parameters {
-        string(name: 'BRANCH_NAME', defaultValue: 'dev', description: 'Git branch to build')
-    }
     stages {
         stage('Checkout from GitHub') {
             steps {
-                git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/youngitn/topkey_api.git', branch: "${params.BRANCH_NAME}"
+                git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/youngitn/topkey_api.git', branch: "dev"
             }
         }
         stage('Maven Build') {
