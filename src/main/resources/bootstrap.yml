@@ -1,4 +1,8 @@
 spring:
+ cache:
+  type: caffeine
+  caffeine:
+   spec: maximumSize=500,expireAfterAccess=600s
  application:
   name: api-service
  cloud:
@@ -16,7 +20,10 @@ spring:
      healthCheckCriticalTimeout: 30s
 
 management:
-    endpoints:
-     web:
-      exposure:
-       include: health,info
+ endpoint:
+  health:
+   show-details: always
+ endpoints:
+  web:
+   exposure:
+    include: "*"
