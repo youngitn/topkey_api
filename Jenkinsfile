@@ -7,17 +7,16 @@ pipeline {
     }
     environment {
         APP_NAME = "api.jar"
-        CONFIG_FILE = "./config/application-prod.yml"
-        APP_HOME = "/home/angela/service/api"
+        APP_HOME = "/home/angela/service/teset-api"
         GIT_CREDENTIALS_ID = '5486ab12-f4dc-43a7-9d7a-384505b067f1'
-        DOCKER_IMAGE = 'local-api-image:latest'
+        DOCKER_IMAGE = 'test-local-api-image:latest'
         JAVA_HOME = '/home/angela/graalvm-jdk-22'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
     stages {
         stage('Checkout from GitHub') {
             steps {
-                git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/youngitn/topkey_api.git', branch: 'master'
+                git credentialsId: "${GIT_CREDENTIALS_ID}", url: 'https://github.com/youngitn/topkey_api.git', branch: "${params.BRANCH_NAME}"
             }
         }
         stage('Maven Build') {
