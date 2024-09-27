@@ -13,6 +13,9 @@ pipeline {
         JAVA_HOME = '/home/angela/graalvm-jdk-22'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'dev', description: 'Git branch to build')
+    }
     stages {
         stage('Checkout from GitHub') {
             steps {
