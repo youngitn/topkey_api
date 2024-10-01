@@ -49,7 +49,7 @@ spring:
 #   config:
 #    acl-token: ${CONSUL_TOKEN}
    host: consul_server
-   port: 8501
+   port: 8500
    discovery:
 #    acl-token: ${CONSUL_TOKEN}
     healthCheckPath: /actuator/health
