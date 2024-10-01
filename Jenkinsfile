@@ -6,7 +6,7 @@ pipeline {
         maven 'apache-maven-3.9.8'
     }
     environment {
-        APP_NAME = "api.jar"
+        APP_NAME = "dev-api"
         APP_HOME = "/home/angela/service/dev-api"
         GIT_CREDENTIALS_ID = '5486ab12-f4dc-43a7-9d7a-384505b067f1'
         DOCKER_IMAGE = 'dev-local-api-image:latest'
@@ -43,19 +43,27 @@ pipeline {
                 }
             }
         }
-         stage('Deploy Docker Container') {
-            steps {
-                script {
-                    
-                    dir("${APP_HOME}") {
-                        // 停止并删除现有的容器（如果存在）
-                        sh 'docker compose down'
-                        
-                        sh 'docker compose up -d'
-                    }
-                }
-            }
-            
-    }
+         stage('Deploy Docker Stack to Swarm') {
+		    steps {
+		        script {
+		            dir("${APP_HOME}") {
+		                try {
+		                    // 停止並移除現有的 Stack（如果存在）
+		                    echo 'Shutting down existing stack...'
+		                    sh 'docker stack rm ${APP_NAME} || true'  // 用 `docker stack rm` 來移除 Stack
+		
+		                    // 部署新的 Stack
+		                    echo 'Deploying new stack...'
+		                    sh 'docker stack deploy --compose-file stack.yml ${APP_NAME}'
+		
+		                    echo 'Deployment completed successfully!'
+		                } catch (Exception e) {
+		                    echo "Deployment failed: ${e.getMessage()}"
+		                    currentBuild.result = 'FAILURE'
+		                }
+		            }
+		        }
+		    }
+	}
 }
 }
