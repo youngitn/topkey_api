@@ -48,13 +48,13 @@ spring:
   consul:
 #   config:
 #    acl-token: ${CONSUL_TOKEN}
-   host: 10.4.0.53
-   port: 8500
+   host: consul_server
+   port: 8501
    discovery:
 #    acl-token: ${CONSUL_TOKEN}
     healthCheckPath: /actuator/health
-    healthCheckUrl: http://10.4.4.136:8088/actuator/health
-custom:
- logstash_uri: 10.4.0.53:4660
- appender_ref: TCP_LOGSTASH
+    healthCheckUrl: /actuator/health
+#custom:
+# logstash_uri: 10.4.0.53:4660
+# appender_ref: TCP_LOGSTASH
 

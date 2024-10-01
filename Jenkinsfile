@@ -7,9 +7,9 @@ pipeline {
     }
     environment {
         APP_NAME = "api.jar"
-        APP_HOME = "/home/angela/service/teset-api"
+        APP_HOME = "/home/angela/service/dev-api"
         GIT_CREDENTIALS_ID = '5486ab12-f4dc-43a7-9d7a-384505b067f1'
-        DOCKER_IMAGE = 'test-local-api-image:latest'
+        DOCKER_IMAGE = 'dev-local-api-image:latest'
         JAVA_HOME = '/home/angela/graalvm-jdk-22'
         PATH = "${JAVA_HOME}/bin:${PATH}"
     }
