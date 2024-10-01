@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'vm01'
+        label 'vm02'
     }
     tools {
         maven 'apache-maven-3.9.8'
