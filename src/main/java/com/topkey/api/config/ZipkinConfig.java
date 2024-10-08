@@ -28,6 +28,8 @@ public class ZipkinConfig {
       if(context instanceof ServerRequestObservationContext c) {
         HttpServletRequest servletRequest = c.getCarrier();
         String requestURI = servletRequest.getRequestURI();
+        String userAgent = servletRequest.getHeader("User-Agent");
+        System.out.println(userAgent);
         if(StringUtils.containsAny(requestURI, actuatorPath, swaggerPath, apiDocsPath)) {
           return false;
         }
