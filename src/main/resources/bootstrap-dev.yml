@@ -53,7 +53,6 @@ spring:
    discovery:
 #    acl-token: ${CONSUL_TOKEN}
     healthCheckPath: /actuator/health
-    healthCheckUrl: /actuator/health
 #custom:
 # logstash_uri: 10.4.0.53:4660
 # appender_ref: TCP_LOGSTASH

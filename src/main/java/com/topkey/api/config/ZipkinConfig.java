@@ -25,18 +25,18 @@ public class ZipkinConfig {
   ObservationPredicate noopServerRequestObservationPredicate() {
 
     ObservationPredicate  predicate = (name, context) -> {
-      if(context instanceof ServerRequestObservationContext c) {
-        HttpServletRequest servletRequest = c.getCarrier();
-        String requestURI = servletRequest.getRequestURI();
-        String userAgent = servletRequest.getHeader("User-Agent");
-        System.out.println(userAgent);
+//      if(context instanceof ServerRequestObservationContext c) {
+//        HttpServletRequest servletRequest = c.getCarrier();
+//        String requestURI = servletRequest.getRequestURI();
+//        String userAgent = servletRequest.getHeader("User-Agent");
+//        System.out.println(userAgent);
 //        if(StringUtils.containsAny(requestURI, actuatorPath, swaggerPath, apiDocsPath)) {
 //          return false;
 //        }
-      }
-      if(StringUtils.equalsAny(name,"spring.security.filterchains","spring.security.authorizations","spring.security.http.secured.requests")) {
-        return false;
-      }
+//      }
+//      if(StringUtils.equalsAny(name,"spring.security.filterchains","spring.security.authorizations","spring.security.http.secured.requests")) {
+//        return false;
+//      }
       return true;
     };
 
