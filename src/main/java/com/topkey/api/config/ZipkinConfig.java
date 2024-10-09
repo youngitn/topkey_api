@@ -30,9 +30,9 @@ public class ZipkinConfig {
         String requestURI = servletRequest.getRequestURI();
         String userAgent = servletRequest.getHeader("User-Agent");
         System.out.println(userAgent);
-        if(StringUtils.containsAny(requestURI, actuatorPath, swaggerPath, apiDocsPath)) {
-          return false;
-        }
+//        if(StringUtils.containsAny(requestURI, actuatorPath, swaggerPath, apiDocsPath)) {
+//          return false;
+//        }
       }
 //      if(StringUtils.equalsAny(name,"spring.security.filterchains","spring.security.authorizations","spring.security.http.secured.requests")) {
 //        return false;
